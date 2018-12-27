@@ -1,0 +1,364 @@
+html{
+    font-family: Arial, Helvetica, sans-serif;
+    scroll-behavior: smooth;
+}
+#slidesHome{
+
+    min-height: 80vh;
+    margin-left: 55%;
+    margin-right: 0%;
+    width: 35%;
+    }
+
+.fontSize{
+    font-size:20px !important;
+}
+.hOne{
+    font-size:8vh;
+    font-weight: 900;
+    letter-spacing: 1.5vh;
+}
+.hOne-color{
+    color: #e65c3a;
+
+}
+.hTwo{
+    font-size:6vh;
+    font-weight: 900;
+    letter-spacing: 1vh;
+}
+.hTwoSecNum-color{
+    color:rgb(177, 177, 177);
+}
+.hTwo-color{
+    color:rgb(237,227,216); 
+
+}
+.hThree{
+    padding-left:0 !important;
+    padding-bottom:1vh !important;
+    margin: 0;
+    font-size:1.5vh;
+    font-weight: 300;
+    letter-spacing: 1vh;
+    text-shadow: 2px 2px black 
+}
+.hThree-color{
+    color:rgb(237,227,216);
+
+}
+.hFour{
+    font-size:4vh;
+    font-weight: 700;
+    letter-spacing: 1vh;
+}
+.hFour-color{
+    color:rgb(237,227,216);
+
+}
+.hFive{
+    font-size:2.5vh;
+    font-weight: 600;
+    letter-spacing: 1vh;
+    text-shadow: 2px 2px black;
+}
+.hFive-color{
+    color:rgb(237,227,216);
+
+}
+.p{
+    font-size:4vh;
+    font-weight: 300;
+    letter-spacing: 1vh;
+    margin-top: 6vh;
+}
+.inLine{
+    display:inline !important;
+}
+.navbarBColor{
+    background-color:rgb(237,227,216) !important;
+}
+.navbar-toggler-icon{
+    color: #e65c3a !important;
+}
+
+
+.carouselText{
+    font-size:3.5vw;
+    text-shadow: 2px 2px black;
+    margin-left:0 !important;
+    margin-right:0 !important;
+}
+.carousel-caption {
+    position: absolute;
+    right: 0% !important;
+    bottom: 20px !important;
+    left: 0% !important;
+    z-index: 100 !important;
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+    color: #fff;
+    text-align: center;
+  }
+
+.carousel-caption .color{
+    color: #e65c3a !important;
+    display: inline;
+}
+.carousel-indicators li{
+height: 1vh !important;
+}
+ 
+.HomeContent{
+    isolation: isolate;
+    float: left;
+    text-align: inline;
+    color:rgb(237,227,216);
+    font-size: 4vh;
+    padding: 5% 0% 0% 0%;
+    margin: 0% 0% 0% 5%;
+}
+
+section {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    isolation: isolate;
+    position: relative;
+    min-height: 80vh;
+    padding: 0em;
+}
+
+.layerOne {
+    background-color: rgba(2, 5, 8, 0.575);
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 80vh;
+    mix-blend-mode: hard-light;
+    }
+.layerTwo {
+    background-color: rgba(50, 50, 49, 0.639);
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 120vh;
+    }
+.one{
+    background-image: url("images/sectionOne.jpg");
+    position: relative;
+    background-size: cover;
+    min-height: 80vh;
+    background-position: center;
+    isolation: isolate;
+}
+
+.two{
+    background-image: url("images/sectionTwo.jpg");
+    position: relative;
+    background-size: cover;
+    min-height: 120vh;
+    background-position: center;
+    isolation: isolate;
+}
+
+.three{
+    background-color: rgb(99, 67, 77);
+
+}
+
+.four{
+    background-color: rgb(97, 113, 74);
+}
+
+.five{
+    background-color: rgb(202, 143, 80);
+}
+.navbar{
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+.containerHeader{
+    width:100%;
+    padding-right:15%;
+    padding-left:5%;
+    padding-bottom:2.5%;
+    padding-top: 10%;
+    margin-right:auto;
+    margin-left:auto  
+}
+.containerProgress{
+    width:100% !important;
+    padding-right:10% !important;
+    padding-left:0% !important;
+    padding-bottom:5% !important;
+    padding-top: 2.5% !important;
+    margin-right:0 !important;
+    margin-left:15% !important;
+}
+.rowProgress{
+    display:flex !important;
+    align-items:center !important;
+    margin-bottom: 2vh !important;
+    margin-left: 2.5vh !important;
+    margin-right: 15vh !important;
+}
+.spanProgress{
+    margin: 0 !important;
+    padding: 0 !important;
+}
+.progressBar .progressBar-layout{
+    background-color:  rgb(241, 104, 12)  ;
+    margin-right: 2vh !important;
+    height: 1.3vh !important;
+}
+.ProgressColor{
+    background-color: transparent !important;
+}
+@media (min-width:577px){
+    .containerProgress{
+        max-width:90%;
+        margin-left:10% !important;
+        margin-right:10% !important;
+
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    #slidesHome{
+        padding: 70% 0% 0% 0%;
+        margin: 0% 28% 0% 60%;
+        min-height: 80vh;
+    }
+    section {
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        isolation: isolate;
+        position: relative;
+        min-height: 80vh;
+        padding: 0em;
+        
+    }
+    .containerHeader{
+        width:100%;
+        padding-right:15%;
+        padding-left:5%;
+        padding-bottom:2.5%;
+        padding-top: 10%;
+        margin-right:auto;
+        margin-left:auto  
+    }
+    .containerProgress{
+        margin-left:0 !important;
+        padding-right: 0 !important; 
+    }   
+    .rowProgress{
+        margin-left:5% !important;
+        margin-right:5% !important;
+
+    }   
+
+    .hOne{
+        font-size:8vh;
+        font-weight: 900;
+        letter-spacing: 1.5vh;
+    }
+    .hOne-color{
+        color: #e65c3a;
+    
+    }
+    .hTwo{
+        font-size:3.5vh;
+        font-weight: 900;
+        letter-spacing: 1vh;
+    }
+    .hTwo-color{
+        color:rgb(237,227,216); 
+    
+    }
+    .hThree{
+        padding-left:0 !important;
+        padding-bottom:1vh !important;
+        font-size:1.5vh !important;
+        font-weight: 300 !important;
+        letter-spacing: 1vh !important;
+        text-shadow: 2px 2px black !important;
+    }
+    .hThree-color{
+        color:rgb(237,227,216);
+    
+    }
+    .hFour{
+        font-size:2.5vh;
+        font-weight: 700;
+        letter-spacing: 1vh;
+    }
+    .hFour-color{
+        color:rgb(237,227,216);
+    
+    }
+    .hFive{
+        font-size:2vh;
+        font-weight: 600;
+        letter-spacing: 1vh;
+        text-shadow: 2px 2px black;
+    }
+    .hFive-color{
+        color:rgb(237,227,216);
+    
+    }
+    .p{
+        font-size:4vh;
+        font-weight: 300;
+        letter-spacing: 1vh;
+        margin-top: 6vh;
+    }
+    .layerOne {
+        background-color: rgba(2, 5, 8, 0.575);
+        position: relative;
+        top: 0;
+        left: 0;
+        min-height: 80vh;
+        mix-blend-mode: hard-light;
+    }
+    .layerTwo {
+        background-color: rgba(50, 50, 49, 0.639);
+        position: relative;
+        top: 0;
+        left: 0;
+        min-height: 120vh;
+    }
+    .one{
+        background-image: url("images/sectionOne.jpg");
+        position: relative;
+        background-size: cover;
+        min-height: 80vh;
+        background-position: center;
+        isolation: isolate;
+    }
+        
+    .two{
+        background-image: url("images/sectionTwo.jpg");
+        position: relative;
+        background-size: cover;
+        min-height: 120vh;
+        background-position: center;
+        isolation: isolate;
+    }
+        
+    .three{
+        background-color: rgb(99, 67, 77);  
+    }
+        
+    .four{
+        background-color: rgb(97, 113, 74);
+    }
+        
+    .five{
+        background-color: rgb(202, 143, 80);
+    }
+    }
+   

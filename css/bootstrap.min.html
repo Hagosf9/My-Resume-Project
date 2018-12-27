@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Using JS Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+   
+</head>
+<body>
+  <p>User Input is: <span id="myResult">Show result</span></p>
+  <br/><br/>
+  Enter data: &nbsp;&nbsp;&nbsp;
+  <input type="text" maxlength="15" id="txtData" />
+  <br/><br/>
+  <input type="button" id="btnData" value="Get data" 
+  onclick="getData('txtData', 'myResult')" />
+ 
+  <script>
+      // states:
+      // 1. cookie 
+      // 2. localStorage 
+      // 3. sessionStorage
+      function getData(userInput, userOutput){
+        var userInputElement = 
+                    document.getElementById(userInput);
+        var userOutputElement = 
+                    document.getElementById(userOutput);
+
+        userOutputElement.innerHTML = userInputElement.value; 
+      }
+     
+  </script>
+
+</body>
+</html>
