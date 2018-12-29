@@ -2,6 +2,12 @@ html{
     font-family: Arial, Helvetica, sans-serif;
     scroll-behavior: smooth;
 }
+body{
+    padding: 5px !important;
+}
+nav{
+    padding: 5px !important;
+}
 #slidesHome{
 
     min-height: 80vh;
@@ -44,7 +50,7 @@ html{
     text-shadow: 2px 2px black 
 }
 .hThree-color{
-    color:rgb(237,227,216);
+    color:rgb(255, 255, 255);
 
 }
 .hFour{
@@ -67,7 +73,7 @@ html{
 
 }
 .p{
-    font-size:4vh;
+    font-size:3.5vh;
     font-weight: 300;
     letter-spacing: 1vh;
     margin-top: 6vh;
@@ -76,7 +82,7 @@ html{
     display:inline !important;
 }
 .navbarBColor{
-    background-color:rgb(237,227,216) !important;
+    background-color:rgb(211, 189, 165) !important;
 }
 .navbar-toggler-icon{
     color: #e65c3a !important;
@@ -115,8 +121,23 @@ height: 1vh !important;
     text-align: inline;
     color:rgb(237,227,216);
     font-size: 4vh;
-    padding: 5% 0% 0% 0%;
-    margin: 0% 0% 0% 5%;
+    padding: 0% 0% 0% 0%;
+    margin: 10% 5% 10% 5%;
+}
+
+.roundedImg{
+        border-radius: 100%;
+}
+.ProfileFlexContainer{
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+}
+
+#ProfileImg{
+width: 30vh;
+margin: 5% 0% 0% 20%;
 }
 
 section {
@@ -126,35 +147,42 @@ section {
     background-position: center;
     isolation: isolate;
     position: relative;
-    min-height: 80vh;
+    min-height: 85vh;
     padding: 0em;
 }
 
 .layerOne {
-    background-color: rgba(2, 5, 8, 0.575);
+    background-color: rgba(50, 50, 49, 0.65);
     position: relative;
     top: 0;
     left: 0;
-    min-height: 80vh;
-    mix-blend-mode: hard-light;
+    min-height: 90vh;
     }
 .layerTwo {
-    background-color: rgba(50, 50, 49, 0.639);
+    background-color: rgba(50, 50, 49, 0.65);
     position: relative;
     top: 0;
     left: 0;
     min-height: 120vh;
     }
-.one{
+.layerthree {
+    background-color: rgba(50, 50, 49, 0.5);
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 120vh;
+    }
+#sectionOne{
     background-image: url("images/sectionOne.jpg");
     position: relative;
     background-size: cover;
-    min-height: 80vh;
+    min-height: 90vh;
     background-position: center;
     isolation: isolate;
+    
 }
 
-.two{
+#sectionTwo{
     background-image: url("images/sectionTwo.jpg");
     position: relative;
     background-size: cover;
@@ -163,10 +191,16 @@ section {
     isolation: isolate;
 }
 
-.three{
-    background-color: rgb(99, 67, 77);
-
+#sectionThree{
+    background-image: url("images/sectionThree.jpg");
+    position: relative;
+    background-size: cover;
+    min-height: 120vh;
+    background-position: center;
+    isolation: isolate;
 }
+
+
 
 .four{
     background-color: rgb(97, 113, 74);
@@ -216,6 +250,13 @@ section {
 .ProgressColor{
     background-color: transparent !important;
 }
+#secTwoInd{
+    width: 7vh;
+}
+#secThreeInd{
+    width: 7vh;
+}
+
 @media (min-width:577px){
     .containerProgress{
         max-width:90%;
@@ -226,6 +267,9 @@ section {
 }
 
 @media only screen and (max-width: 576px) {
+    nav{
+        padding:0 15px 0 15px !important;
+    }
     #slidesHome{
         padding: 70% 0% 0% 0%;
         margin: 0% 28% 0% 60%;
@@ -310,45 +354,74 @@ section {
         color:rgb(237,227,216);
     
     }
-    .p{
-        font-size:4vh;
-        font-weight: 300;
-        letter-spacing: 1vh;
-        margin-top: 6vh;
+ 
+    .HomeContent{
+        isolation: isolate;
+        float: left;
+        text-align: inline;
+        color:rgb(237,227,216);
+        font-size: 4vh;
+        padding: 0% 0% 0% 0%;
+        margin: 0% 0% 10% 5%;
+    }
+    
+    .ProfileFlexContainer{
+    
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+    
+    #ProfileImg{
+    width: 25vh;
+    margin: 5% 0% 0% 35%;
     }
     .layerOne {
-        background-color: rgba(2, 5, 8, 0.575);
+        background-color: rgba(50, 50, 49, 0.849);
         position: relative;
         top: 0;
         left: 0;
-        min-height: 80vh;
-        mix-blend-mode: hard-light;
+        min-height: 90vh;
     }
     .layerTwo {
-        background-color: rgba(50, 50, 49, 0.639);
+        background-color: rgba(50, 50, 49, 0.849);
         position: relative;
         top: 0;
         left: 0;
         min-height: 120vh;
     }
-    .one{
-        background-image: url("images/sectionOne.jpg");
+    .layerthree {
+        background-color: rgba(50, 50, 49, 0.849);
         position: relative;
+        top: 0;
+        left: 0;
+        min-height: 120vh;
+        }
+    #sectionOne{
+        background-image: url("images/sectionOneMobile.jpg");
+        position:relative;
         background-size: cover;
-        min-height: 80vh;
+        min-height: 90vh;
         background-position: center;
         isolation: isolate;
     }
         
-    .two{
-        background-image: url("images/sectionTwo.jpg");
+    #sectionTwo{
+        background-image: url("images/sectionTwoMobile.jpg");
         position: relative;
         background-size: cover;
         min-height: 120vh;
         background-position: center;
         isolation: isolate;
     }
-        
+    #sectionThree{
+        background-image: url("images/sectionThreeMobile.jpg");
+        position: relative;
+        background-size: cover;
+        min-height: 120vh;
+        background-position: center;
+        isolation: isolate;
+    } 
     .three{
         background-color: rgb(99, 67, 77);  
     }
@@ -359,6 +432,12 @@ section {
         
     .five{
         background-color: rgb(202, 143, 80);
+    }
+    #secTwoInd{
+        width: 4vh;
+    }
+    #secThreeInd{
+        width: 4vh;
     }
     }
    

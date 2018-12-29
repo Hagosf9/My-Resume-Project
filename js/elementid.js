@@ -6,8 +6,9 @@ let currentElementName = {
 };
 
 
+
 // checks if html element currentlly displaying on client screen
-const isElementInView = (el, ratio) => {
+const isElementInView = (el) => {
     if (el instanceof Element) {
         const indexY = window.pageYOffset
         const viewport = {
@@ -20,14 +21,16 @@ const isElementInView = (el, ratio) => {
             bottom: EboundsTop + el.clientHeight
         }
 
-        if ((ElementBounds.bottom >= viewport.top && ElementBounds.bottom * ratio <= viewport.bottom) ||
-            (ElementBounds.top <= viewport.bottom * ratio && ElementBounds.top >= viewport.top)) {
+        if ((ElementBounds.bottom >= viewport.top && ElementBounds.bottom <= viewport.bottom) ||
+            (ElementBounds.top <= viewport.bottom && ElementBounds.top >= viewport.top) ||
+            (ElementBounds.bottom >= viewport.bottom && ElementBounds.top <= viewport.top)) {
             return true;
         }
         else
             return false;
     }
 }
+
 
 const createskillsObject = (skillArr) => {
     if (skillArr.length >= 0) {
@@ -44,25 +47,52 @@ const createskillsObject = (skillArr) => {
     else return null;
 }
 
-//get element ID and update rate = total time in mil seconds to complete animation
-const animatedElement = (elSection, secTwo) => {
+//handle dynamic background offset per section seperatlly if currentlly display on screen
+//handle dynamic bar progress 
+const animatedElement = (elSection, progressBarInd, secTwo, yScroll) => {
+
+    function sectionBackgroundOffset(secElement, yScroll, parallaxSpeed) {
+
+        secElement.style.transform = "translate3d(" + 0 + ", " + yScroll * parallaxSpeed / 2.5 + "px, 0";
+
+    }
+
+
+    function rotateAnimation(elSection, yScroll) {
+        switch (elSection.id) {
+            case 'sectionTwo':
+                document.getElementById("secTwoInd").style.transform = "rotateY(" + yScroll * 0.45 + "deg)"
+                break;
+            case 'sectionThree':
+                document.getElementById("secThreeInd").style.transform = "rotateY(" + yScroll * 0.45 + "deg)"
+                break;
+
+            default:
+                break;
+        }
+    }
+
+
     switch (elSection.id) {
         case 'sectionOne':
+            sectionBackgroundOffset(elSection, yScroll, 0.2);
+            return true;
 
-            break;
         case 'sectionTwo':
-            function move(objElem,transparency) {
+            rotateAnimation(elSection, yScroll);
+            sectionBackgroundOffset(elSection, yScroll, 0.1);
+            function move(objElem, transparency) {
                 var width = 0;
-                var id = setInterval(frame, 90);
+                var id = setInterval(frame, 50);
                 var green = 104;
                 function frame() {
                     if (width >= objElem.skillScore) {
                         clearInterval(id);
                         if (objElem.skillScore >= 90)
-                        objElem.skillId.style.backgroundColor = "rgb(241, 104,12," + 1 + ")";
+                            objElem.skillId.style.backgroundColor = "rgb(241, 104,12," + 1 + ")";
                     } else {
-                        transparency += 0.035;
-                        width += 5;
+                        transparency += 0.006;
+                        width += 1;
                         objElem.skillId.style.backgroundColor = "rgb(241, 104," + (green--) + "," + transparency + ")";
                         objElem.skillId.style.width = width + '%';
                         objElem.skillId.setAttribute('ariaValuenow', width);
@@ -71,13 +101,17 @@ const animatedElement = (elSection, secTwo) => {
                     }
                 }
             }
-
-            for (const key in secTwo) {
-                move(secTwo[key], 0.2);
+            if (progressBarInd && elSection.getBoundingClientRect().top / window.innerHeight < 0.5) {
+                for (const key in secTwo) {
+                    move(secTwo[key], 0.2);
+                }
+                return true;
             }
+            else return false;
 
-            break;
         case 'sectionThree':
+            rotateAnimation(elSection, yScroll);
+            sectionBackgroundOffset(elSection, yScroll, 0.08);
 
             break;
         case 'sectionFour':
@@ -94,9 +128,9 @@ const animatedElement = (elSection, secTwo) => {
 
 // Usage.
 document.addEventListener('DOMContentLoaded', () => {
-    
+
     class rowSkill {
-        //set and update in html doc the new row elements
+        //set and update in html doc the new row elements, generate html Id's acordinglly to skill name
         constructor(_skillName, _score) {
             this.skillText = _skillName;
             this.skillId = this.createSkillId();
@@ -112,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </div>
                                 <h3 id="progressId" class="hThree hThree-color col-2 col-l-1 col-xl-1">0%</h3>
                             </div>`;
-    
+
             this.temp1 = this.newStrEl.replace('skillText', this.skillText);
             this.newStrEl = this.temp1.replace('skillId', this.skillId);
             this.temp1 = this.newStrEl.replace('progressId', this.progressId);
@@ -120,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.getElementById("containerProgress").innerHTML = this.newStrEl;
             this.newStrEl = '';
             this.temp1 = '';
-    
+
         }
         createSkillId() {
             let temp = this.skillText.toLowerCase();
@@ -128,41 +162,52 @@ document.addEventListener('DOMContentLoaded', () => {
             let skillId = temp1.replace(/[.,';:`£%&~=!--/]/g, '');
             return skillId;
         }
-    
+
     }
-    
+
     const skillRows = [
         new rowSkill('Bootstrap', 85), new rowSkill('JavaScript', 90),
         new rowSkill('ES6', 90), new rowSkill('TS', 95), new rowSkill('Angular 6', 85),
-        new rowSkill('C#', 95), new rowSkill('MySql / MsSql', 95),
+        new rowSkill('NodeJS', 99), new rowSkill('C#', 95), new rowSkill('MySql / MsSql', 95),
         new rowSkill('ASP.NET / Web API', 75)
     ];
-    
-    
+
+
     const skill = createskillsObject(skillRows);
-    
-    
-    
-    let SectionId = [
-        [document.getElementById('sectionOne'), 1],
-        [document.getElementById('sectionTwo'), 1],
-        [document.getElementById('sectionThree'), 1],
-        [document.getElementById('sectionFour'), 1]
+
+
+    const SectionEl = [
+        document.getElementById('sectionOne'),
+        document.getElementById('sectionTwo'),
+        document.getElementById('sectionThree'),
+        document.getElementById('sectionFour')
     ]
-    
+
+
+    let sectionRule = [
+        [SectionEl[0], true, 'o'],
+        [SectionEl[1], true, 'o'],
+        [SectionEl[2], true, 'o'],
+        [SectionEl[3], true, 'r']
+    ]
+
 
     const handler = () => {
+        let scrollingY = window.scrollY;
         currentElementName.first = '';
         currentElementName.second = '';
-        for (var i = 0; i < SectionId.length; i++) {
-            if (SectionId[i][1] && isElementInView(SectionId[i][0], 0.5)) {
-                currentElementName.first = String(SectionId[i][0].id)
-                SectionId[i][1] = 0;
-                animatedElement(SectionId[i][0], skill);
-                if (i + 1 < SectionId.length && isElementInView(SectionId[i + 1][0], 0.3)) {
-                    currentElementName.second = String(SectionId[i + 1][0].id)
-                    SectionId[i + 1][1] = 0;
-                    animatedElement(SectionId[i + 1][0], skill);
+        for (var i = 0; i < sectionRule.length; i++) {
+            if ((sectionRule[i][1] || sectionRule[i][2] === 'o') && (isElementInView(sectionRule[i][0]))) {
+                currentElementName.first = String(sectionRule[i][0].id)
+                if (animatedElement(sectionRule[i][0], sectionRule[i][1], skill, scrollingY)) {
+                    sectionRule[i][1] = false;
+                }
+                if ((i + 1 < sectionRule.length) && ((sectionRule[i + 1][1] || sectionRule[i + 1][2] === 'o')) &&
+                    isElementInView(sectionRule[i + 1][0])) {
+                    currentElementName.second = String(sectionRule[i + 1][0].id);
+                    if (animatedElement(sectionRule[i + 1][0], sectionRule[i + 1][1], skill, scrollingY)) {
+                        sectionRule[i + 1][1] = false;
+                    }
                 }
                 break;
             }
