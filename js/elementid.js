@@ -5,7 +5,7 @@ let currentElementName = {
     second: ''
 };
 
-
+let rotateCallsCount = [0,0,0,0];
 
 // checks if html element currentlly displaying on client screen
 const isElementInView = (el) => {
@@ -50,7 +50,6 @@ const createskillsObject = (skillArr) => {
 //handle dynamic background offset per section seperatlly if currentlly display on screen
 //handle dynamic bar progress 
 const animatedElement = (elSection, progressBarInd, secTwo, yScroll) => {
-
     function sectionBackgroundOffset(secElement, yScroll, parallaxSpeed) {
 
         secElement.style.transform = "translate3d(" + 0 + ", " + yScroll * parallaxSpeed / 2.5 + "px, 0";
@@ -59,12 +58,52 @@ const animatedElement = (elSection, progressBarInd, secTwo, yScroll) => {
 
 
     function rotateAnimation(elSection, yScroll) {
+
+        function findDegInString(str, arr) {
+            let firstPos = '';
+            let secondPos = '';
+            let subStr = '';
+
+            firstPos = str.indexOf(arr[0]);
+            secondPos = str.indexOf(arr[1]);
+
+            if (firstPos != '' && secondPos != '' && firstPos + secondPos >= 0) {
+                subStr = str.substring(firstPos + 1, secondPos);
+                return (Number(subStr.replace("deg", '')));
+            }
+            return Number(0);
+        }
+
+
+        let deg = 0;
+        function spin(objElem, spins) {
+            var id = setInterval(spinFrame, 50);
+            function spinFrame() {
+                if (deg > spins*360*2)
+                    clearInterval(id);
+                else {
+                    deg += 10;
+                    objElem.style.transform = "rotateY(" +
+                        (-deg - findDegInString(objElem.style.transform, ['(', ')'])) + "deg)"
+                }
+            }
+        }
+
+
         switch (elSection.id) {
             case 'sectionTwo':
-                document.getElementById("secTwoInd").style.transform = "rotateY(" + yScroll * 0.45 + "deg)"
+                if (document.getElementById("secTwoInd").getBoundingClientRect().top < yScroll &&
+                    rotateCallsCount[1] < 1) {
+                    spin(document.getElementById("secTwoInd"), 3)
+                    rotateCallsCount[1]++;
+                }
                 break;
             case 'sectionThree':
-                document.getElementById("secThreeInd").style.transform = "rotateY(" + yScroll * 0.45 + "deg)"
+            if (document.getElementById("secThreeInd").getBoundingClientRect().top < yScroll &&
+            rotateCallsCount[2] < 1) {
+            spin(document.getElementById("secThreeInd"), 3)
+            rotateCallsCount[2]++;
+        }
                 break;
 
             default:
@@ -140,7 +179,7 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <span class="col-l-3 col-xl-3 spanProgress">
                                  <h5 class="hFive hFive-color">skillText</h5>
                                 </span>
-                                <div class="progress ProgressColor col-10 col-l-6 col-xl-6">
+                                <div class="progress ProgressColor col-10 col-l-8 col-xl-8">
                                 <div id="skillId" class="progress-bar progressBar-layout progress-bar-striped progress-bar-animated " role="progressbar"
                                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%"></div>
                                 </div>
